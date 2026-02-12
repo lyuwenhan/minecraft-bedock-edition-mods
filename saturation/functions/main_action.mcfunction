@@ -1,0 +1,1 @@
+effect @a saturation infinite 255 true

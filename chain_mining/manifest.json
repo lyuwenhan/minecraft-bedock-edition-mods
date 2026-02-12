@@ -1,0 +1,73 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "pack.name",
+		"description": "pack.description",
+		"version": [
+			1,
+			0,
+			0
+		],
+		"uuid": "3f29b9e1-8d8b-4a17-9369-cd6f3e8d3f8a",
+		"min_engine_version": [
+			1,
+			21,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "a7d0f2c4-6b34-4a27-9c4b-0b0e03a7b1d5",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"language": "javascript",
+			"type": "script",
+			"uuid": "5e2b8a9d-4e12-45f1-b0c1-8994a3c5f6e7",
+			"version": [
+				0,
+				0,
+				1
+			],
+			"entry": "scripts/index.js"
+		}
+	],
+	"subpacks": [
+		{
+			"folder_name": "d4",
+			"name": "Break 9*9 stone",
+			"memory_tier": 1
+		},
+		{
+			"folder_name": "d3",
+			"name": "Break 7*7 stone",
+			"memory_tier": 1
+		},
+		{
+			"folder_name": "d2",
+			"name": "Break 5*5 stone",
+			"memory_tier": 1
+		},
+		{
+			"folder_name": "d1",
+			"name": "Break 3*3 stone",
+			"memory_tier": 1
+		},
+		{
+			"folder_name": "d0",
+			"name": "Normal",
+			"memory_tier": 1
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.11.0"
+		}
+	]
+}
