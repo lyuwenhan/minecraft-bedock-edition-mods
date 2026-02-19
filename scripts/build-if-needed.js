@@ -6,11 +6,9 @@ const {
 const root = process.cwd();
 const dataDir = path.join(root, "data");
 const mcpacksDir = path.join(dataDir, "mcpacks");
-if (!fs.existsSync(dataDir)) {
-	fs.mkdirSync(dataDir, {
-		recursive: true
-	})
-}
+fs.mkdirSync(mcpacksDir, {
+	recursive: true
+});
 const versionsPath = path.join(dataDir, "versions.json");
 let versions = {};
 if (fs.existsSync(versionsPath)) {
@@ -97,8 +95,8 @@ for (const dir of dirs) {
 		fs.writeFileSync(statusPath, JSON.stringify(defaultStatus, null, "\t") + "\n", "utf8")
 	} catch (err) {
 		hasError = true;
-		console.error(`Failed processing ${dir}: ${err.message}`)
-		console.error(e.stack);
+		console.error(`Failed processing ${dir}: ${err.message}`);
+		console.error(err.stack)
 	}
 }
 fs.writeFileSync(versionsPath, JSON.stringify(versions) + "\n", "utf8");
