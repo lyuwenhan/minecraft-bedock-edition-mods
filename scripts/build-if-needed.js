@@ -55,8 +55,8 @@ for (const dir of dirs) {
 			const manifestPath = path.join(extPath, "manifest.json");
 			const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 			const version = manifest.header.version.join(".");
-			const displayName = "";
-			const description = "";
+			let displayName = "";
+			let description = "";
 			const textPath = path.join(extPath, "texts", "en_US.lang");
 			if (fs.existsSync(textPath)) {
 				const texts = fs.readFileSync(textPath, "utf8").split("\n");
@@ -98,6 +98,7 @@ for (const dir of dirs) {
 	} catch (err) {
 		hasError = true;
 		console.error(`Failed processing ${dir}: ${err.message}`)
+		console.error(e.stack);
 	}
 }
 fs.writeFileSync(versionsPath, JSON.stringify(versions) + "\n", "utf8");
