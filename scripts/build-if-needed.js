@@ -5,6 +5,7 @@ const {
 } = require("child_process");
 const root = process.cwd();
 const dataDir = path.join(root, "data");
+const mcpacksDir = path.join(dataDir, "mcpacks");
 if (!fs.existsSync(dataDir)) {
 	fs.mkdirSync(dataDir, {
 		recursive: true
@@ -83,7 +84,7 @@ for (const dir of dirs) {
 				versions[dir].displayName = displayName;
 				versions[dir].description = description
 			}
-			const outFile = path.join(extensionsDir, `${dir}.zip`);
+			const outFile = path.join(mcpacksDir, `${dir}.mcpack`);
 			console.log(`Packing ${dir} -> ${outFile}`);
 			execSync(`zip -r "${outFile}" . -x "*.git*"`, {
 				cwd: extPath,
