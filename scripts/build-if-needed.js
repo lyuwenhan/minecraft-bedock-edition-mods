@@ -13,7 +13,7 @@ fs.mkdirSync(distDir, {
 fs.mkdirSync(assetsDir, {
 	recursive: true
 });
-const versionsPath = path.join(assetsDir, "versions.json");
+const versionsPath = path.join(dataDir, "versions.json");
 let versions = {};
 if (fs.existsSync(versionsPath)) {
 	try {
