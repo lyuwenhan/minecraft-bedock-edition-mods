@@ -40,7 +40,7 @@ for (const dir of dirs) {
 		} catch {
 			console.warn(`${dir}: invalid or missing status.json, using default.`)
 		}
-		if (status?.needsUpdate) {
+		if (status.needsUpdate) {
 			fs.mkdirSync(extensionsDir, {
 				recursive: true
 			});
@@ -52,7 +52,7 @@ for (const dir of dirs) {
 				console.log(`Icon copied: ${iconPath} -> ${targetPath}`);
 				hasIcon = true
 			} else {
-				console.warn(`pack_icon.png not found for ${dir}`)
+				console.warn(`Icon not found for ${dir}`)
 			}
 			const manifestPath = path.join(extPath, "manifest.json");
 			const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
@@ -70,21 +70,21 @@ for (const dir of dirs) {
 					}
 				})
 			}
-			const isNew = !versions[dir];
-			if (isNew) {
-				console.log(`New extension detected: ${dir}`);
+			if (!versions[dir]) {
+				console.log(`New mod detected: ${dir}`);
 				versions[dir] = {
 					version,
 					hasIcon,
-					href: "",
 					displayName,
 					description
 				}
 			} else {
-				versions[dir].version = version;
-				versions[dir].hasIcon = hasIcon;
-				versions[dir].displayName = displayName;
-				versions[dir].description = description
+				versions[dir] = {
+					version: version ?? versions[dir].version,
+					hasIcon: hasIcon ?? versions[dir].hasIcon,
+					displayName: displayName ?? versions[dir].displayName,
+					description: description ?? versions[dir].description
+				}
 			}
 			const outFile = path.join(distDir, `${dir}.mcpack`);
 			console.log(`Packing ${dir} -> ${outFile}`);
