@@ -54,6 +54,14 @@ for (const dir of dirs) {
 			} else {
 				console.warn(`Icon not found for ${dir}`)
 			}
+			const readmePath = path.join(extPath, "README.md");
+			if (fs.existsSync(readmePath)) {
+				const targetPath = path.join(extensionsDir, "README.md");
+				fs.copyFileSync(readmePath, targetPath);
+				console.log(`README copied: ${readmePath} -> ${targetPath}`)
+			} else {
+				console.warn(`README not found for ${dir}`)
+			}
 			const manifestPath = path.join(extPath, "manifest.json");
 			const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 			const version = manifest.header.version.join(".");
