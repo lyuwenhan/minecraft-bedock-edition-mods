@@ -84,14 +84,16 @@ for (const dir of dirs) {
 					version,
 					hasIcon,
 					displayName,
-					description
+					description,
+					link: {}
 				}
 			} else {
 				versions[dir] = {
 					version: version ?? versions[dir].version,
 					hasIcon: hasIcon ?? versions[dir].hasIcon,
 					displayName: displayName ?? versions[dir].displayName,
-					description: description ?? versions[dir].description
+					description: description ?? versions[dir].description,
+					link: versions[dir].link ?? {}
 				}
 			}
 			const outFile = path.join(distDir, `${dir}.mcpack`);
@@ -111,7 +113,7 @@ for (const dir of dirs) {
 		console.error(err.stack)
 	}
 }
-fs.writeFileSync(versionsPath, JSON.stringify(versions) + "\n", "utf8");
+fs.writeFileSync(versionsPath, JSON.stringify(versions, null, "\t") + "\n", "utf8");
 if (hasError) {
 	process.exit(1)
 }
