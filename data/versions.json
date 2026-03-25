@@ -1,4 +1,7 @@
 {
+	"data": {
+		"ext": "mcpack"
+	},
 	"chain_mining": {
 		"version": "1.0.1",
 		"hasIcon": true,
